@@ -32,7 +32,7 @@ public class Enquirer implements IEnquirer
 		do{
 
 			obj = bc.recuperaObjeto(bichos[i]);
-			decl = obj.primeira();
+			decl = obj.primeira();//comentario
 
 			boolean animalEsperado = true;
 			while (decl != null && animalEsperado) {
