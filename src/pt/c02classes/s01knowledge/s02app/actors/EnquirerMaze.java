@@ -18,6 +18,7 @@ public class EnquirerMaze implements IEnquirer {
 		
 		System.out.print("(P)ergunta, (M)ovimento ou (F)im? ");
 		String tipo = scanner.nextLine();
+	//	String tipo = responder.ask("(P)ergunta, (M)ovimento ou (F)im? ");
 		while (!tipo.equalsIgnoreCase("F")) {
 		   System.out.print("  --> ");
 		   String pc = scanner.nextLine();
