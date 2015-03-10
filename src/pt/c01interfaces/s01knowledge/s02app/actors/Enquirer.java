@@ -38,7 +38,7 @@ public class Enquirer implements IEnquirer
 		
 		/*pegando os animais da base de conhecimento*/
 		String[] bichos = bc.listaNomes();
-		int i = -1;
+		int i = -1, numBichos = bichos.length;
 		
 		/*laco de repeticao que serve para indicar o animal que o entrevistador
 		 * "tem em mente" para fazer as perguntas
@@ -86,7 +86,7 @@ public class Enquirer implements IEnquirer
 			}
 
 			
-		}while(i < bichos.length && decl != null);
+		}while(i < numBichos && decl != null);
 		
 		/*verifica se o animal foi encontrado*/		
 		boolean acertei = responder.finalAnswer(bichos[i]);
