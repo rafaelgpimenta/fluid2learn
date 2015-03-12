@@ -1,6 +1,9 @@
 package pt.c02classes.s01knowledge.s02app.actors;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
 
 import pt.c02classes.s01knowledge.s01base.inter.IEnquirer;
 import pt.c02classes.s01knowledge.s01base.inter.IResponder;
@@ -14,27 +17,43 @@ public class EnquirerMaze implements IEnquirer {
 	}
 	
 	public boolean discover() {
-		Scanner scanner = new Scanner(System.in);
-		
-		System.out.print("(P)ergunta, (M)ovimento ou (F)im? ");
-		String tipo = scanner.nextLine();
-	//	String tipo = responder.ask("(P)ergunta, (M)ovimento ou (F)im? ");
-		while (!tipo.equalsIgnoreCase("F")) {
-		   System.out.print("  --> ");
-		   String pc = scanner.nextLine();
-		   switch (tipo.toUpperCase()) {
-		      case "P": String resposta = responder.ask(pc);
-		                System.out.println("  Resposta: " + resposta);
-		                break;
-		      case "M": boolean moveu = responder.move(pc);
-		                System.out.println((moveu)?"  Movimento executado!":"Não é possível mover");
-		                break;
-		   }
-			System.out.print("(P)ergunta, (M)ovimento ou (F)im? ");
-			tipo = scanner.nextLine();
+		Stack<String> possibilidades = new Stack<String>();
+		Stack<String> movExecutado = new Stack<String>();
+		List<Integer[][]> posicoesPassdas = new ArrayList<Integer[][]>();
+
+		String posicao = responder.ask("norte");	
+		String movimento;
+		String verifica = "inicio";
+				
+		while(!posicao.equals("saida")){
+			
+			if((responder.ask("leste").equals("passagem") ||responder.ask("leste").equals("saida"))
+					&& !verifica.equals("leste"))
+				possibilidades.push("leste");			
+			if((responder.ask("oeste").equals("passagem") || responder.ask("oeste").equals("saida"))
+					&& !verifica.equals("oeste"))
+				possibilidades.push("oeste");
+			if((responder.ask("sul").equals("passagem") ||responder.ask("sul").equals("saida"))
+					&& !verifica.equals("sul"))
+				possibilidades.push("sul");			
+			if((responder.ask("norte").equals("passagem") ||responder.ask("norte").equals("saida"))
+					&& !verifica.equals("norte"))
+				possibilidades.push("norte");
+			
+			movimento = possibilidades.pop();
+			responder.move(movimento);
+			
+			switch (movimento) {
+				case "norte": movExecutado.push("sul"); break;
+				case "sul":   movExecutado.push("norte"); break;
+				case "leste": movExecutado.push("oeste"); break;
+				case "oeste": movExecutado.push("leste"); break;
+			}
+			
+			posicao = responder.ask("aqui");
+			verifica = movExecutado.peek();
 		}
 		
-		scanner.close();
 		
 		return true;
 	}
