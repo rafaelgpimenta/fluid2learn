@@ -27,6 +27,7 @@ public class EnquirerAnimals implements IEnquirer {
 		List<String> armazenaResposta = new ArrayList<String>();
 		
 		IBaseConhecimento bc = new BaseConhecimento();
+		bc.setScenario("animals");
 		IDeclaracao decl = null;
 		
 		/*pegando os animais da base de conhecimento*/
