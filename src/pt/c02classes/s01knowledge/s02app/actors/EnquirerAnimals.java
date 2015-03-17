@@ -17,8 +17,8 @@ import pt.c02classes.s01knowledge.s01base.inter.IResponder;
 
 public class EnquirerAnimals implements IEnquirer {
 
-	IResponder responder;
-	IObjetoConhecimento obj;
+	private IResponder responder;
+	private IObjetoConhecimento obj;
 	
 	public void connect(IResponder responder) {
 		this.responder = responder;

@@ -13,13 +13,13 @@ import pt.c02classes.s01knowledge.s01base.inter.IResponder;
 
 public class EnquirerMaze implements IEnquirer {
 
-	IResponder responder;
+	private IResponder responder;
 
 	public void connect(IResponder responder) {
 		this.responder = responder;
 	}
 	// voltando ate uma posicao em que o responder tenha outra possibilidade de movimento alem da que ele ja executou
-	public void volta(int linha, int coluna,int linhaAnterior,int colunaAnterior){
+	private void volta(int linha, int coluna,int linhaAnterior,int colunaAnterior){
 		// se o responder tinha se movimentado a leste
 		if(linha == linhaAnterior && coluna > colunaAnterior)
 			// volta para oeste
@@ -36,7 +36,7 @@ public class EnquirerMaze implements IEnquirer {
 			// se nao, ele tinha se movimentado ao norte e volta ao sul
 			responder.move("sul");
 	}
-	public boolean recursao(int linha, int coluna, List<String> posicoesPassadas, boolean resposta,
+	private boolean recursao(int linha, int coluna, List<String> posicoesPassadas, boolean resposta,
 			int linhaAnterior,int colunaAnterior) {
 		
 		int direcao;
