@@ -1,3 +1,8 @@
+/*
+ * Autores:
+ * 	Rafael Gois Pimenta RA:157055
+ * 	Jose Pedro V. do Nascimento Filho RA:155981
+ * */
 package pt.c02classes.s01knowledge.s02app.app;
 
 import java.util.Scanner;
