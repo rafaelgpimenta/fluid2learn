@@ -38,11 +38,12 @@ public class EnquirerMaze implements IEnquirer {
 	}
 	public boolean recursao(int linha, int coluna, List<String> posicoesPassadas, boolean resposta,
 			int linhaAnterior,int colunaAnterior) {
-		// descobrindo o que ha na posicao atual do responder
-		String posicao = responder.ask("aqui");
+		
 		int direcao;
 		boolean entrou = false;
 		
+		// descobrindo o que ha na posicao atual do responder
+		String posicao = responder.ask("aqui");
 		// se o responder ja encontrou a saida
 		if (posicao.equals("saida")){
 			resposta = true;
@@ -117,8 +118,8 @@ public class EnquirerMaze implements IEnquirer {
 
 	public boolean discover() {
 		List<String> posicoesPassadas = new ArrayList<String>();
+		
 		posicoesPassadas.add("0,0");		
-
 		return recursao(0,0,posicoesPassadas,false,0,0);
 	}
 
